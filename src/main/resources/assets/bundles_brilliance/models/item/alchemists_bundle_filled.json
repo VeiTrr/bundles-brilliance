@@ -1,0 +1,6 @@
+{
+  "parent": "bundles_brilliance:item/alchemists_bundle",
+  "textures": {
+    "layer0": "bundles_brilliance:item/alchemists_bundle_filled"
+  }
+}

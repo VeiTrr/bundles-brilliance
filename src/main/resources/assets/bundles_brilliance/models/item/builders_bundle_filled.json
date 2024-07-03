@@ -1,0 +1,6 @@
+{
+  "parent": "bundles_brilliance:item/builders_bundle",
+  "textures": {
+    "layer0": "bundles_brilliance:item/builders_bundle_filled"
+  }
+}

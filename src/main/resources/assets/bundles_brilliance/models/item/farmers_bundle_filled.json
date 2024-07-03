@@ -1,0 +1,6 @@
+{
+  "parent": "bundles_brilliance:item/farmers_bundle",
+  "textures": {
+    "layer0": "bundles_brilliance:item/farmers_bundle_filled"
+  }
+}
