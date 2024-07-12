@@ -3,15 +3,14 @@
 	"id": "bundles-brilliance",
 	"version": "${version}",
 	"name": "Bundle's Brilliance",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Upgrade your inventory with bundles that specialize in different tasks!",
 	"authors": [
-		"Me!"
+		"VeiTr"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/VeiTrr/bundles-brilliance"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/bundles_brilliance/icon.png",
 	"environment": "*",
 	"entrypoints": {
