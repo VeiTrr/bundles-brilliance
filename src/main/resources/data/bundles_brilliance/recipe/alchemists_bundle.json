@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "R#R",
+        "gBg",
+        "GPG"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:ender_eye"
+        },
+        "R": {
+            "item": "minecraft:cobweb"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "B": {
+            "item": "minecraft:bundle"
+        },
+        "G": {
+            "item": "minecraft:glowstone_dust"
+        },
+        "P": {
+            "item": "minecraft:sculk"
+        }
+    },
+    "result": {
+        "id": "bundles_brilliance:alchemists_bundle",
+        "count": 1
+    }
+}

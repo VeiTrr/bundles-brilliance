@@ -2,13 +2,24 @@ package dev.vt;
 
 import dev.vt.items.BundleBrillianceItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.village.TradeOffer;
+import net.minecraft.village.TradedItem;
+import net.minecraft.village.VillagerProfession;
 
 
 public class BundleRegistry {
@@ -39,9 +50,85 @@ public class BundleRegistry {
         Registry.register(Registries.ITEM_GROUP, Identifier.of(BundlesBrilliance.MOD_ID, "bundles_brilliance"), BUNDLES_BRILLIANCE);
     }
 
+    public static void registerVillagerTrades() {
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2,
+                factories -> factories.add((entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD, 10),
+                        new ItemStack(FARMERS_BUNDLE, 1),
+                        1,
+                        5,
+                        0.05f
+                )));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2,
+                factories -> factories.add((entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD, 10),
+                        new ItemStack(MINERS_BUNDLE, 1),
+                        1,
+                        5,
+                        0.05f
+                )));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 4,
+                factories -> factories.add((entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD, 20),
+                        new ItemStack(ALCHEMISTS_BUNDLE, 1),
+                        1,
+                        5,
+                        0.05f
+                )));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.MASON, 1,
+                factories -> factories.add((entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD, 10),
+                        new ItemStack(BUILDERS_BUNDLE, 1),
+                        1,
+                        5,
+                        0.05f
+                )));
+    }
+
+    public static void modifyLootTables() {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
+            if (key.getValue().getPath().contains("village_desert_house")
+                    || key.getValue().getPath().contains("village_plains_house")
+                    || key.getValue().getPath().contains("village_savanna_house")
+                    || key.getValue().getPath().contains("village_snowy_house")
+                    || key.getValue().getPath().contains("village_taiga_house")) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.09f))
+                        .with(ItemEntry.builder(FARMERS_BUNDLE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
+
+            if (key.getValue().getPath().contains("village_weaponsmith")
+                    || key.getValue().getPath().contains("village_toolsmith")) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.09f))
+                        .with(ItemEntry.builder(MINERS_BUNDLE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
+
+            if (key.getValue().getPath().contains("chests/trial_chambers/reward_unique")) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.09f))
+                        .with(ItemEntry.builder(ALCHEMISTS_BUNDLE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
+        });
+    }
+
 
     public static void register() {
         registerBundles();
         registerItemGroups();
+        registerVillagerTrades();
+        modifyLootTables();
     }
 }

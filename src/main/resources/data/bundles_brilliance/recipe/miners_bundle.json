@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "#g#",
+        "iBi",
+        "SDJ"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "B": {
+            "item": "minecraft:bundle"
+        },
+        "S": {
+            "item": "minecraft:black_dye"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "J": {
+            "item": "minecraft:brown_dye"
+        }
+    },
+    "result": {
+        "id": "bundles_brilliance:miners_bundle",
+        "count": 1
+    }
+}

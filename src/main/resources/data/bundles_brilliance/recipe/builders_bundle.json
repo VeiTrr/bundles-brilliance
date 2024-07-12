@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "C#C",
+        "iBi",
+        "WBW"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:brick"
+        },
+        "C": {
+            "tag": "c:cobblestones"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "B": {
+            "item": "minecraft:bundle"
+        },
+        "W": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result": {
+        "id": "bundles_brilliance:builders_bundle",
+        "count": 1
+    }
+}

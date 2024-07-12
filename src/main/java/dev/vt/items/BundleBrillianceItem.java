@@ -234,7 +234,27 @@ public class BundleBrillianceItem extends BundleItem {
         @Override
         public boolean checkValid(ItemStack insertStack) {
             //TODO: Replace with config
-            return insertStack.getItem() instanceof BlockItem;
+            List<TagKey<Item>> tags = List.of(
+                    ConventionalItemTags.STONES,
+                    ConventionalItemTags.BRICKS,
+                    ConventionalItemTags.NETHER_BRICKS,
+                    ConventionalItemTags.BARRELS,
+                    ConventionalItemTags.CONCRETES,
+                    ConventionalItemTags.DYED,
+                    ConventionalItemTags.GLASS_BLOCKS,
+                    ItemTags.PLANKS,
+                    ItemTags.LOGS,
+                    ItemTags.SAND,
+                    ItemTags.WOOL,
+                    ItemTags.SOUL_FIRE_BASE_BLOCKS
+            );
+
+            for (TagKey<Item> tag : tags) {
+                if (TagUtil.isIn(tag, insertStack.getItem())) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
