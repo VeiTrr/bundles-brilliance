@@ -7,7 +7,7 @@ version = project.mod_version + "-v" + project.minecraft_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = project.archives_base_name + "-neoforge"
 }
 
 repositories {
@@ -73,7 +73,7 @@ jar {
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
-			artifactId = project.archives_base_name
+			artifactId = project.archives_base_name + "-neoforge"
 			from components.java
 		}
 	}
