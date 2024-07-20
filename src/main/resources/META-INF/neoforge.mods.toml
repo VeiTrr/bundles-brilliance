@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/VeiTrr/bundles-brilliance/issues"
+license = "MIT"
+
+[[mods]]
+modId = "bundles_brilliance"
+version = "${version}"
+displayName = "Bundle's Brilliance"
+authors = "VeiTr"
+description = "Upgrade your inventory with bundles that specialize in different tasks!"
+logoFile = "assets/bundles_brilliance/icon.png"
+
+[[dependencies.bundles-brilliance]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bundles-brilliance]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config="bundles_brilliance.mixins.json"

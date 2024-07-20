@@ -2,7 +2,7 @@ package dev.vt;
 
 import dev.vt.items.BundleBrillianceItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -11,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.Registries;
@@ -86,7 +87,7 @@ public class BundleRegistry {
     }
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key.getValue().getPath().contains("village_desert_house")
                     || key.getValue().getPath().contains("village_plains_house")
                     || key.getValue().getPath().contains("village_savanna_house")
@@ -96,7 +97,7 @@ public class BundleRegistry {
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
                         .with(ItemEntry.builder(FARMERS_BUNDLE))
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
 
                 tableBuilder.pool(poolBuilder);
             }
@@ -107,7 +108,7 @@ public class BundleRegistry {
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
                         .with(ItemEntry.builder(MINERS_BUNDLE))
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
 
                 tableBuilder.pool(poolBuilder);
             }
@@ -117,7 +118,7 @@ public class BundleRegistry {
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
                         .with(ItemEntry.builder(ALCHEMISTS_BUNDLE))
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
+                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
 
                 tableBuilder.pool(poolBuilder);
             }

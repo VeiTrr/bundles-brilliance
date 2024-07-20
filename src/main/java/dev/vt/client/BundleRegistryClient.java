@@ -1,5 +1,6 @@
-package dev.vt;
+package dev.vt.client;
 
+import dev.vt.BundleRegistry;
 import dev.vt.items.BundleBrillianceItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.util.Identifier;
