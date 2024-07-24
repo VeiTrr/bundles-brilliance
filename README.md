@@ -17,11 +17,11 @@ Bundle are auto picks items into them.
 
 ## Installation
 
-1. Make sure you have Fabric Loader installed. If not, download it from [FabricMC](https://fabricmc.net/use/).
-2. Download the latest version of Fabric API and place it in your mods folder.
+1. Make sure you have NeoForged installed.
+2. Download the latest version of Forgified Fabric API.
 3. Download Bundle's Brilliance
-4. Place the downloaded `.jar` file in your mods folder.
-5. Run Minecraft with Fabric.
+4. Place the downloaded `.jar` files in your mods folder.
+5. Run Minecraft with NeoForge.
 
 ## Usage
 
