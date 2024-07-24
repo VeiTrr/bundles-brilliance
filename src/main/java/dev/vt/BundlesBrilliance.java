@@ -14,7 +14,6 @@ public class BundlesBrilliance {
 
 	public BundlesBrilliance(IEventBus modEventBus, ModContainer modContainer) {
 		LOGGER.info("Initializing");
-		BundleRegistry.register();
-		NeoForge.EVENT_BUS.register(this);
+		BundleRegistry.register(modEventBus);
 	}
 }

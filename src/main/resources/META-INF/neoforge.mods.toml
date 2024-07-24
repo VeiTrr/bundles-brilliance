@@ -25,5 +25,12 @@ versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies.bundles-brilliance]]
+modId = "fabric_api"
+type = "required"
+versionRange = "[0.100.7,)"
+ordering = "BEFORE"
+side = "BOTH"
+
 [[mixins]]
 config="bundles_brilliance.mixins.json"

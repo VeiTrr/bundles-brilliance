@@ -9,10 +9,10 @@ import net.minecraft.util.Identifier;
 public class BundleRegistryClient {
 
     public static void registerModelPredicates() {
-        ModelPredicateProviderRegistry.register(BundleRegistry.MINERS_BUNDLE, Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
-        ModelPredicateProviderRegistry.register(BundleRegistry.ALCHEMISTS_BUNDLE, Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
-        ModelPredicateProviderRegistry.register(BundleRegistry.BUILDERS_BUNDLE, Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
-        ModelPredicateProviderRegistry.register(BundleRegistry.FARMERS_BUNDLE, Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
+        ModelPredicateProviderRegistry.register(BundleRegistry.MINERS_BUNDLE.asItem(), Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
+        ModelPredicateProviderRegistry.register(BundleRegistry.ALCHEMISTS_BUNDLE.asItem(), Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
+        ModelPredicateProviderRegistry.register(BundleRegistry.BUILDERS_BUNDLE.asItem(), Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
+        ModelPredicateProviderRegistry.register(BundleRegistry.FARMERS_BUNDLE.asItem(), Identifier.ofVanilla("filled"), (stack, world, entity, seed) -> BundleBrillianceItem.getAmountFilled(stack));
     }
 
 

@@ -21,41 +21,46 @@ import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 
 public class BundleRegistry {
-    public static final Item MINERS_BUNDLE = new BundleBrillianceItem.MinersBundleItem();
-    public static final Item ALCHEMISTS_BUNDLE = new BundleBrillianceItem.AlchemistsBundleItem();
-    public static final Item BUILDERS_BUNDLE = new BundleBrillianceItem.BuildersBundleItem();
-    public static final Item FARMERS_BUNDLE = new BundleBrillianceItem.FarmersBundleItem();
+    public static final String MOD_ID = BundlesBrilliance.MOD_ID;
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
+    public static final DeferredItem<Item> MINERS_BUNDLE = ITEMS.register("miners_bundle", BundleBrillianceItem.MinersBundleItem::new);
+    public static final DeferredItem<Item> ALCHEMISTS_BUNDLE = ITEMS.register("alchemists_bundle", BundleBrillianceItem.AlchemistsBundleItem::new);
+    public static final DeferredItem<Item> BUILDERS_BUNDLE = ITEMS.register("builders_bundle", BundleBrillianceItem.BuildersBundleItem::new);
+    public static final DeferredItem<Item> FARMERS_BUNDLE = ITEMS.register("farmers_bundle", BundleBrillianceItem.FarmersBundleItem::new);
+
     public static final ItemGroup BUNDLES_BRILLIANCE = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(MINERS_BUNDLE))
+            .icon(() -> new ItemStack(MINERS_BUNDLE.asItem()))
             .displayName(Text.translatable("itemGroup.bundles_brilliance"))
             .entries((context, entries) -> {
-                entries.add(new ItemStack(MINERS_BUNDLE));
-                entries.add(new ItemStack(ALCHEMISTS_BUNDLE));
-                entries.add(new ItemStack(BUILDERS_BUNDLE));
-                entries.add(new ItemStack(FARMERS_BUNDLE));
+                entries.add(new ItemStack(MINERS_BUNDLE.asItem()));
+                entries.add(new ItemStack(ALCHEMISTS_BUNDLE.asItem()));
+                entries.add(new ItemStack(BUILDERS_BUNDLE.asItem()));
+                entries.add(new ItemStack(FARMERS_BUNDLE.asItem()));
             })
             .build();
 
 
-    public static void registerBundles() {
-        Registry.register(Registries.ITEM, Identifier.of(BundlesBrilliance.MOD_ID, "miners_bundle"), MINERS_BUNDLE);
-        Registry.register(Registries.ITEM, Identifier.of(BundlesBrilliance.MOD_ID, "alchemists_bundle"), ALCHEMISTS_BUNDLE);
-        Registry.register(Registries.ITEM, Identifier.of(BundlesBrilliance.MOD_ID, "builders_bundle"), BUILDERS_BUNDLE);
-        Registry.register(Registries.ITEM, Identifier.of(BundlesBrilliance.MOD_ID, "farmers_bundle"), FARMERS_BUNDLE);
+    public static void registerBundles(IEventBus modEventBus) {
+        ITEMS.register(modEventBus);
     }
 
-    public static void registerItemGroups() {
-        Registry.register(Registries.ITEM_GROUP, Identifier.of(BundlesBrilliance.MOD_ID, "bundles_brilliance"), BUNDLES_BRILLIANCE);
+    public static void registerItemGroups(IEventBus modEventBus) {
+        DeferredRegister<ItemGroup> itemGroups = DeferredRegister.create(Registries.ITEM_GROUP, MOD_ID);
+        itemGroups.register("bundles_brilliance", () -> BUNDLES_BRILLIANCE);
+        itemGroups.register(modEventBus);
     }
 
     public static void registerVillagerTrades() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2,
                 factories -> factories.add((entity, random) -> new TradeOffer(
                         new TradedItem(Items.EMERALD, 10),
-                        new ItemStack(FARMERS_BUNDLE, 1),
+                        new ItemStack(FARMERS_BUNDLE.asItem(), 1),
                         1,
                         5,
                         0.05f
@@ -63,7 +68,7 @@ public class BundleRegistry {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2,
                 factories -> factories.add((entity, random) -> new TradeOffer(
                         new TradedItem(Items.EMERALD, 10),
-                        new ItemStack(MINERS_BUNDLE, 1),
+                        new ItemStack(MINERS_BUNDLE.asItem(), 1),
                         1,
                         5,
                         0.05f
@@ -71,7 +76,7 @@ public class BundleRegistry {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CLERIC, 4,
                 factories -> factories.add((entity, random) -> new TradeOffer(
                         new TradedItem(Items.EMERALD, 20),
-                        new ItemStack(ALCHEMISTS_BUNDLE, 1),
+                        new ItemStack(ALCHEMISTS_BUNDLE.asItem(), 1),
                         1,
                         5,
                         0.05f
@@ -79,7 +84,7 @@ public class BundleRegistry {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.MASON, 1,
                 factories -> factories.add((entity, random) -> new TradeOffer(
                         new TradedItem(Items.EMERALD, 10),
-                        new ItemStack(BUILDERS_BUNDLE, 1),
+                        new ItemStack(BUILDERS_BUNDLE.asItem(), 1),
                         1,
                         5,
                         0.05f
@@ -96,9 +101,7 @@ public class BundleRegistry {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
-                        .with(ItemEntry.builder(FARMERS_BUNDLE))
-                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
-
+                        .with(ItemEntry.builder(FARMERS_BUNDLE));
                 tableBuilder.pool(poolBuilder);
             }
 
@@ -107,9 +110,7 @@ public class BundleRegistry {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
-                        .with(ItemEntry.builder(MINERS_BUNDLE))
-                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
-
+                        .with(ItemEntry.builder(MINERS_BUNDLE));
                 tableBuilder.pool(poolBuilder);
             }
 
@@ -117,18 +118,16 @@ public class BundleRegistry {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.09f))
-                        .with(ItemEntry.builder(ALCHEMISTS_BUNDLE))
-                        .apply((LootFunction.Builder) SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)).build());
-
+                        .with(ItemEntry.builder(ALCHEMISTS_BUNDLE));
                 tableBuilder.pool(poolBuilder);
             }
         });
     }
 
 
-    public static void register() {
-        registerBundles();
-        registerItemGroups();
+    public static void register(IEventBus modEventBus) {
+        registerBundles(modEventBus);
+        registerItemGroups(modEventBus);
         registerVillagerTrades();
         modifyLootTables();
     }
