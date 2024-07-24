@@ -2,8 +2,7 @@
 
 Upgrade your inventory with bundles that specialize in different tasks!
 
-[![Fabric API](https://images2.imgbox.com/8e/38/bfInI5qv_o.png)](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-
+[![Forgified Fabric API](https://raw.githubusercontent.com/Sinytra/.github/main/badges/forgified-fabric-api/compacter.svg)](https://github.com/Sinytra/ForgifiedFabricAPI)
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1062250?style=for-the-badge&logo=curseforge&logoColor=%230d0d0d&labelColor=%23f16436&color=%230d0d0d)](https://www.curseforge.com/minecraft/mc-mods/bundles-brilliance)
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/ovly8iPu?style=for-the-badge&logo=modrinth&color=%231bd96a)](https://modrinth.com/mod/bundles-brilliance)
 
