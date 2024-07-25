@@ -11,25 +11,26 @@ authors = "VeiTr"
 description = "Upgrade your inventory with bundles that specialize in different tasks!"
 logoFile = "assets/bundles_brilliance/icon.png"
 
-[[dependencies.bundles-brilliance]]
+[[dependencies.bundles_brilliance]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.bundles-brilliance]]
+[[dependencies.bundles_brilliance]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.bundles-brilliance]]
+[[dependencies.bundles_brilliance]]
 modId = "fabric_api"
+reason = "usage of forgified fabric api"
 type = "required"
 versionRange = "[0.100.7,)"
-ordering = "BEFORE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
