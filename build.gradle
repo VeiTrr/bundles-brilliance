@@ -3,11 +3,11 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version + "-v" + project.minecraft_version
+version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name + "-neoforge"
+	archivesName = project.archives_base_name + "-v" + project.minecraft_version + "-neoforge"
 }
 
 repositories {
