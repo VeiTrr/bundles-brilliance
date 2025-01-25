@@ -8,9 +8,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(BundlesBrillianceCommon.MOD_ID)
 public class BundlesBrilliance {
 
-    public BundlesBrilliance(FMLJavaModLoadingContext context) {
-        context.getModEventBus().addListener(this::setup);
-        BundleRegistry.register(context.getModEventBus());
+    public BundlesBrilliance() {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        BundleRegistry.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
 

@@ -37,6 +37,12 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 }
 
+configurations.configureEach {
+    resolutionStrategy {
+        force 'net.sf.jopt-simple:jopt-simple:5.0.4'
+    }
+}
+
 processResources {
     inputs.property 'version', project.version
     inputs.property 'mod_id', project.mod_id
